@@ -40,6 +40,18 @@ android {
 }
 
 dependencies {
+    // JSON Serialization
+    implementation("io.ktor:ktor-client-content-negotiation:3.1.3")
+    implementation("io.ktor:ktor-serialization-kotlinx-json:3.1.3")
+
+    // Ktorfit
+    implementation("de.jensklingenberg.ktorfit:ktorfit-lib:2.6.1")
+    implementation("io.ktor:ktor-client-android:3.2.2")
+
+    // Retrosheet
+    implementation("io.github.theapache64:retrosheet:3.0.2")
+
+    implementation("org.slf4j:2.0.16")
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)

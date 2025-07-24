@@ -19,6 +19,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.example.androidapplearning.ui.theme.AndroidAppLearningTheme
 
 private const val TAG = "MainActivity"
+private const val URL: String = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQ2lPlbomjfDeYtnO6-MbQOyZuWBxT8Pz_7RHxhI1MozF7gri9gBKh3CqfkMhLolHkn_we6PV7P-O1L/pubhtml?gid=0&single=true"
 private var numberDisplayValue: Int = 0
 class MainActivity : ComponentActivity() {
     private lateinit var buttonAdditionButton: Button
