@@ -1,6 +1,10 @@
 package com.example.androidapplearning
 
 import android.os.Bundle
+import android.util.Log
+import android.view.View
+import android.widget.Button
+import android.widget.TextView
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
@@ -14,34 +18,42 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.androidapplearning.ui.theme.AndroidAppLearningTheme
 
+private const val TAG = "MainActivity"
+private var numberDisplayValue: Int = 0
 class MainActivity : ComponentActivity() {
+    private lateinit var buttonAdditionButton: Button
+    private lateinit var buttonSubtractionButton: Button
+    private lateinit var textViewNumberDisplay: TextView
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
-        setContent {
-            AndroidAppLearningTheme {
-                Scaffold(
-                    modifier = Modifier.fillMaxSize()
-                ) {
-                    innerPadding -> TextWithModifier("hi there", Modifier.padding(innerPadding))
+        setContentView(R.layout.mainlayout)
+
+        buttonAdditionButton = findViewById(R.id.additionButton)
+        buttonSubtractionButton = findViewById(R.id.subtractionButton)
+        textViewNumberDisplay = findViewById(R.id.numberDisplay)
+
+        textViewNumberDisplay.text = "$numberDisplayValue"
+
+        buttonAdditionButton.setOnClickListener(
+            object: View.OnClickListener {
+                override fun onClick(v: View?) {
+                    numberDisplayValue++
+                    Log.i(TAG, "addition happened")
+                    textViewNumberDisplay.text = "$numberDisplayValue"
                 }
             }
-        }
-    }
-}
+        )
 
 
-@Composable
-fun Counter(name: String, modifier:Modifier = Modifier) {
-
-}
-
-@Composable
-fun TextWithModifier(text: String, modifier: Modifier = Modifier) {
-    AndroidAppLearningTheme {
-        Text(
-            text = text,
-            modifier = modifier
+        buttonSubtractionButton.setOnClickListener(
+            object: View.OnClickListener {
+                override fun onClick(v: View?) {
+                    numberDisplayValue--
+                    Log.i(TAG, "addition happened")
+                    textViewNumberDisplay.text = "$numberDisplayValue"
+                }
+            }
         )
     }
 }
