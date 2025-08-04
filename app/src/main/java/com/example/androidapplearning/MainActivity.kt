@@ -22,7 +22,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.example.androidapplearning.ui.theme.AndroidAppLearningTheme
 import com.google.firebase.Firebase
 import com.google.firebase.database.database
-import java.util.Calendar
 
 private const val TAG = "MainActivity"
 private var numberDisplayValue: Int = 0
@@ -72,7 +71,7 @@ class MainActivity : ComponentActivity() {
                 override fun onClick(v: View?) {
                     val teamName: String = editTextTeamName.text.toString()
                     val matchInfo: TeamMatch = TeamMatch(teamName, numberDisplayValue)
-                    var databaseNewEntryRef = database.getReference(teamName).child(Calendar.getInstance().time.toString())
+                    var databaseNewEntryRef = database.getReference(teamName).push()
                     databaseNewEntryRef.setValue(matchInfo)
                 }
             }
