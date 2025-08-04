@@ -1,6 +1,7 @@
 package com.example.androidapplearning
 
 import TeamMatch
+import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.util.Log
@@ -33,6 +34,7 @@ class MainActivity : ComponentActivity() {
     private lateinit var textViewNumberDisplay: TextView
     private lateinit var editTextTeamName: EditText
     private lateinit var buttonSendButton: Button
+    private lateinit var viewResultsButton: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,6 +45,7 @@ class MainActivity : ComponentActivity() {
         textViewNumberDisplay = findViewById(R.id.numberDisplay)
         editTextTeamName = findViewById(R.id.teamName)
         buttonSendButton = findViewById(R.id.sendButton)
+        viewResultsButton = findViewById(R.id.switchToResults)
 
         textViewNumberDisplay.text = "$numberDisplayValue"
 
@@ -74,6 +77,16 @@ class MainActivity : ComponentActivity() {
                     val matchInfo: TeamMatch = TeamMatch(teamName, numberDisplayValue)
                     var databaseNewEntryRef = database.getReference(teamName).child(Calendar.getInstance().time.toString())
                     databaseNewEntryRef.setValue(matchInfo)
+                }
+            }
+        )
+
+
+        viewResultsButton.setOnClickListener(
+            object: View.OnClickListener {
+                override fun onClick(v: View?) {
+                    val intent = Intent(this@MainActivity, ViewResultsActivity::class.java)
+                    startActivity(intent)
                 }
             }
         )
